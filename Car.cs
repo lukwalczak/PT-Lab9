@@ -1,10 +1,14 @@
-﻿namespace PT_Lab9;
+﻿using System.Xml.Serialization;
+
+namespace PT_Lab9;
 
 public class Car
 {
     public string Model { get; set; }
 
     public int Year { get; set; }
+
+    [XmlElement("engine")]
 
     public Engine? Engine { get; set; }
 

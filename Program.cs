@@ -1,4 +1,5 @@
-﻿using PT_Lab9;
+﻿using System.Xml.Serialization;
+using PT_Lab9;
 
 List<Car> myCars = new List<Car>()
 {
@@ -32,9 +33,25 @@ foreach (var carGroup in query2)
 }
 
 var path = "cars.xml";
-System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<Car>));
-using (System.IO.StreamWriter writer = new System.IO.StreamWriter(path))
+XmlSerializer serializer = new XmlSerializer(typeof(List<Car>), new XmlRootAttribute("cars"));
+serializer.UnknownAttribute += (sender, e) => { Console.WriteLine("Unknown attribute: " + e.Attr.Name); };
+serializer.UnknownElement += (sender, e) => { Console.WriteLine("Unknown element: " + e.Element.Name); };
+
+using (StreamWriter writer = new StreamWriter(path))
 {
     serializer.Serialize(writer, myCars);
+}
+
+// Deserialization
+List<Car> deserializedCars;
+using (FileStream fs = new FileStream(path, FileMode.Open))
+{
+    deserializedCars = (List<Car>)serializer.Deserialize(fs);
+}
+
+// Display deserialized data
+foreach (var car in deserializedCars)
+{
+    Console.WriteLine($"Make: {car.Model}, Year: {car.Year}, Engine: {car.Engine.Model}, Displacement: {car.Engine.Displacement}, HorsePower: {car.Engine.HorsePower}");
 }
 
