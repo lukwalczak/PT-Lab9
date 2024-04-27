@@ -7,8 +7,8 @@ public class Engine
     public double Displacement { get; set; }
 
     public double HorsePower { get; set; }
-    
-    [XmlAttribute("model")]
+
+    [XmlAttribute("Model")]
     public string Model { get; set; }
 
     public Engine()
