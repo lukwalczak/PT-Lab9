@@ -2,20 +2,24 @@
 
 public class Car
 {
-    private string model;
+    public string Model { get; set; }
 
-    private int year;
+    public int Year { get; set; }
 
-    private Engine engine;
+    public Engine? Engine { get; set; }
+
+    public Car()
+    {
+    }
 
     public Car(string model, int year)
     {
-        this.model = model;
-        this.year = year;
+        this.Model = model;
+        this.Year = year;
     }
 
-    public Car(string model, int year, Engine engine) : this(model, year)
+    public Car(string model, Engine? engine, int year) : this(model, year)
     {
-        this.engine = engine;
+        this.Engine = engine;
     }
 }

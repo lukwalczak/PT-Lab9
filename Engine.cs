@@ -2,14 +2,20 @@
 
 public class Engine
 {
-    private double displacement { get; set; }
-    private double horsePower { get; set; }
-    private string model { get; set; }
+    public double Displacement { get; set; }
+
+    public double HorsePower { get; set; }
+
+    public string Model { get; set; }
+
+    public Engine()
+    {
+    }
 
     public Engine(double displacement = default, double horsePower = default, string model = null)
     {
-        this.displacement = displacement;
-        this.horsePower = horsePower;
-        this.model = model;
+        this.Displacement = displacement;
+        this.HorsePower = horsePower;
+        this.Model = model;
     }
 }
